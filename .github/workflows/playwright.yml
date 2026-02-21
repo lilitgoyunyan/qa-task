@@ -24,7 +24,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run E2E tests
+      - name: Run tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
         run: npx playwright test
