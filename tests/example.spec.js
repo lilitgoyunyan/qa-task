@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/page-fixtures.js';
 
-test('Should navigate to SPF Generator page', async ({ page }) => {
-  await page.goto(process.env.SPF_GENERATOR_PATH);
+test('Should navigate to SPF Generator page', async ({ basePage, page }) => {
+  await basePage.navigateTo(process.env.SPF_GENERATOR_PATH);
   await expect(page).toHaveURL(new RegExp(process.env.SPF_GENERATOR_PATH));
 });

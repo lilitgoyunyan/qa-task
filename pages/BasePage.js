@@ -3,6 +3,10 @@ export class BasePage {
     this.page = page;
   }
 
+  async navigateTo(url) {
+    await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+  }
+
   async click(locator) {
     await locator.waitFor({ state: 'visible' });
     await locator.click();
