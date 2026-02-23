@@ -7,6 +7,7 @@ export class SpfRecordGeneratorPage extends BasePage {
     //Locators
     this.domainInput = page.locator('#domain');
     this.redirectToggle = page.locator('#redirect_check');
+    this.redirectInput = page.locator('#redirect');
     this.failurePolicyDropdown = page.locator('#dropdownMenuButton');
     this.generateButton = page.locator('button[type="submit"].js-spf-generator-submit-form-btn');
     this.generatedSpfRecord = page.locator('#generated-spf-record');
@@ -41,11 +42,17 @@ export class SpfRecordGeneratorPage extends BasePage {
     return domain;
   }
 
-  async ensureRedirectIsOff() {
+  async enableRedirect() {
     const isChecked = await this.redirectToggle.isChecked();
-    if (isChecked) {
-      await this.click(this.redirectToggle);
+    if (!isChecked) {
+      await this.redirectToggle.evaluate(el => el.click());
     }
+  }
+
+  async fillRedirectInput(value) {
+    await this.redirectInput.waitFor({ state: 'visible' });
+    await this.redirectInput.clear();
+    await this.redirectInput.pressSequentially(value);
   }
 
   async fillMechanismInput(name, value) {
