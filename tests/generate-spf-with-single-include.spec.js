@@ -1,6 +1,7 @@
 import { test, expect } from '../fixtures/page-fixtures.js';
 import {
   INCLUDE_MECHANISMS,
+  MECHANISM_NAMES,
   MECHANISM_TYPES,
   POLICY_OPTIONS,
   PLACEHOLDERS,
@@ -32,10 +33,10 @@ test.describe('SPF Record Generator', () => {
   }
 
   //Add include value and verify it was entered
-  await expect(spfGeneratorPage.mechanismInput('include'), 'Include input field should be visible').toBeVisible();
-  await expect(spfGeneratorPage.mechanismInput('include'), 'Include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
-  await spfGeneratorPage.fillMechanismInput('include', INCLUDE_VALUE);
-  await expect(spfGeneratorPage.mechanismInput('include'), `Include input should contain "${INCLUDE_VALUE}"`).toHaveValue(INCLUDE_VALUE);
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE), 'Include input field should be visible').toBeVisible();
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE), 'Include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.INCLUDE, INCLUDE_VALUE);
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE), `Include input should contain "${INCLUDE_VALUE}"`).toHaveValue(INCLUDE_VALUE);
   
   //Open failure policy dropdown and verify all options are visible
   await spfGeneratorPage.click(spfGeneratorPage.failurePolicyDropdown);

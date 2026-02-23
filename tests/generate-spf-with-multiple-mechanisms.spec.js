@@ -1,6 +1,7 @@
 import { test, expect } from '../fixtures/page-fixtures.js';
 import {
   INCLUDE_MECHANISMS,
+  MECHANISM_NAMES,
   MECHANISM_TYPES,
   POLICY_OPTIONS,
   PLACEHOLDERS,
@@ -34,30 +35,30 @@ test.describe('SPF Record Generator', () => {
   }
 
   //Add include value and verify it was entered
-  await expect(spfGeneratorPage.mechanismInput('include'), 'Include input field should be visible').toBeVisible();
-  await expect(spfGeneratorPage.mechanismInput('include'), 'Include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
-  await spfGeneratorPage.fillMechanismInput('include', INCLUDE_VALUE);
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE), 'Include input field should be visible').toBeVisible();
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE), 'Include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.INCLUDE, INCLUDE_VALUE);
   
   //Add a second include value
-  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption('include'));
-  await expect(spfGeneratorPage.mechanismInput('include').last(), 'Second include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
-  await spfGeneratorPage.fillMechanismInput('include', SECOND_INCLUDE_VALUE);
+  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption(MECHANISM_NAMES.INCLUDE));
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.INCLUDE).last(), 'Second include input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.INCLUDE);
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.INCLUDE, SECOND_INCLUDE_VALUE);
 
   //Add an A record and fill it
-  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption('a'));
-  await expect(spfGeneratorPage.mechanismInput('a'), 'A record input should be visible after clicking A option').toBeVisible();
-  await expect(spfGeneratorPage.mechanismInput('a'), 'A record input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.A_RECORD);
-  await spfGeneratorPage.fillMechanismInput('a', MECHANISM_VALUES.A);
+  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption(MECHANISM_NAMES.A));
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.A), 'A record input should be visible after clicking A option').toBeVisible();
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.A), 'A record input should show correct placeholder').toHaveAttribute('placeholder', PLACEHOLDERS.A_RECORD);
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.A, MECHANISM_VALUES.A);
 
   //Add an MX record and fill it
-  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption('mx'));
-  await expect(spfGeneratorPage.mechanismInput('mx'), 'MX record input should be visible after clicking MX option').toBeVisible();
-  await spfGeneratorPage.fillMechanismInput('mx', MECHANISM_VALUES.MX);
+  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption(MECHANISM_NAMES.MX));
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.MX), 'MX record input should be visible after clicking MX option').toBeVisible();
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.MX, MECHANISM_VALUES.MX);
 
   //Add an Exists record and fill it
-  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption('exists'));
-  await expect(spfGeneratorPage.mechanismInput('exists'), 'Exists record input should be visible after clicking Exists option').toBeVisible();
-  await spfGeneratorPage.fillMechanismInput('exists', MECHANISM_VALUES.EXISTS);
+  await spfGeneratorPage.click(spfGeneratorPage.mechanismOption(MECHANISM_NAMES.EXISTS));
+  await expect(spfGeneratorPage.mechanismInput(MECHANISM_NAMES.EXISTS), 'Exists record input should be visible after clicking Exists option').toBeVisible();
+  await spfGeneratorPage.fillMechanismInput(MECHANISM_NAMES.EXISTS, MECHANISM_VALUES.EXISTS);
 
   //Open failure policy dropdown and verify all options are visible
   await spfGeneratorPage.click(spfGeneratorPage.failurePolicyDropdown);
